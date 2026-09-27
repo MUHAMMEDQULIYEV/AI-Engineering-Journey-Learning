@@ -19,6 +19,57 @@ fashionmnist:dataset that 28*28 size clothing dataset with labels
 - What goes in `__init__` and what goes in `forward`?
 - How is this similar to my ResNet class in TensorFlow?
 
+## Loss: Cross-Entropy
+```
+loss = −log(p_correct)        p_correct = softmax probability of the true class
+```
+| p_correct | loss |
+|---|---|
+| 0.9 | 0.11 |
+| 0.5 | 0.69 |
+| 0.01 | 4.6 |
+
+- `nn.CrossEntropyLoss()` has softmax built in → model outputs raw logits, no `nn.Softmax()` at the end
+- pred shape `[batch, 10]`, y shape `[batch]` (class numbers 0–9)
+
+## Optimizer: Adam = Momentum + RMSProp
+Sources: [DataMListic — "The Adam Optimizer is Just Momentum + RMSProp"](https://youtu.be/nb09yQZ-iFQ) · [Medium — The Math Behind Adam Optimizer](https://medium.com/data-science/the-math-behind-adam-optimizer-c41407efe59b) · Krish Naik bootcamp
+
+For each weight separately (`g` = current gradient, `t` = step number):
+```
+1. m  = β1·m + (1 − β1)·g          average of gradients    → direction (momentum)
+2. v  = β2·v + (1 − β2)·g²         average of g²           → scale (RMSProp)
+3. m̂  = m / (1 − β1ᵗ)              bias correction (m, v start at 0)
+4. v̂  = v / (1 − β2ᵗ)
+5. w  = w − lr · m̂ / (√v̂ + ε)      update
+```
+Defaults: `lr = 1e-3`, `β1 = 0.9`, `β2 = 0.999`, `ε = 1e-8`
+
+- β = how much of the OLD value to keep; the new part is `1 − β`
+- m expanded: `0.1·g_now + 0.09·g_1ago + 0.081·g_2ago + …` (exponential moving average)
+- √v = RMS (Root Mean Square) = typical gradient size of this weight
+- m̂/√v̂ ≈ confidence: steady gradients → ≈1 (full step ≈ lr), noisy ±10 → ≈0 (tiny step)
+- SGD for comparison: `w = w − lr · g`
+
+Worked example (L = w², g = 2w, w = 5, lr = 0.1) — checked in PyTorch:
+| t | g | m | v | w after |
+|---|---|---|---|---|
+| 1 | 10 | 1.0 | 0.1 | 4.9 |
+| 2 | 9.8 | 1.88 | 0.19594 | 4.80 |
+| 3 | 9.6 | 2.652 | 0.2879 | 4.70 |
+
+```python
+optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
+```
+For transformers / LLMs later: AdamW (Adam + fixed weight decay).
+
+**My explanation (own words):**
+- Adam combines momentum + RMSProp. We don't rely on just one gradient: m mixes old and new gradients (newer ones count more), so the direction is smooth, not zig-zag.
+- For the step size we use v: square the gradients (removes the − sign), take their average, then √v in the update → typical gradient size of each weight.
+- ε is in the update (divide by √v̂ + ε) so we never divide by zero when v ≈ 0 at the start.
+- m = direction, v = scale, m/√v = how confident Adam is → step size.
+- The DataMListic video showed me momentum and RMSProp separately, then how their formulas combine into Adam.
+
 ## Training loop
 - The 5 steps: forward → loss → `zero_grad` → `backward` → `step`. Why is each needed?
 
