@@ -72,6 +72,39 @@ For transformers / LLMs later: AdamW (Adam + fixed weight decay).
 
 ## Training loop
 - The 5 steps: forward → loss → `zero_grad` → `backward` → `step`. Why is each needed?
+- `backward()` only **computes** gradients; `optimizer.step()` is what **updates** the weights.
+
+## Evaluation (Sep 29)
+- Eval = only **measure**, never change the model → skip `zero_grad`, `backward`, `step`. Keep the forward pass.
+- `model.eval()` → switches layers like Dropout/BatchNorm to test mode (none in my model yet, but good habit).
+- `torch.no_grad()` → no gradient tracking → faster, less memory.
+- Prediction: `logits` `[64, 10]` → `logits.argmax(dim=1)` → `[64]`. `dim` = the dimension that **disappears** (the 10 classes).
+- `(pred == labels)` → `[True, False, True]`; `.sum()` counts True as 1; `.item()` turns the tensor into a Python number.
+- `total += len(labels)`, not `+= 64` — the last batch is smaller (10000 test images → last batch has 16).
+- Accuracy = `correct / total`, counters reset to 0 every epoch.
+
+## Epochs & curves
+- Train + test **inside the same epoch loop**: epoch 1 train → test, epoch 2 train → test…
+- Appends go **after** the batch loop (once per epoch), not inside it (157 times).
+- Call `model.train()` at the start of each epoch (eval() from last epoch stays on otherwise).
+- Re-create `model` + `optimizer` + empty lists before a new run; otherwise training continues from old weights.
+- Overfitting signal: train loss keeps going down while test accuracy flattens/drops → stop there (early stopping).
+- `loss.item()` after the loop = loss of the **last batch only** → noisy curve. Better: average loss over all batches.
+
+My results: 1 epoch → **81.9%**, 5 epochs → **86.3%** test accuracy.
+
+## Save & Load
+```python
+torch.save(model.state_dict(), "fashion_model.pth")      # save weights only
+
+loaded_model = MyModel()                                  # 1. structure
+loaded_model.load_state_dict(torch.load("fashion_model.pth"))  # 2. weights
+loaded_model.eval()
+```
+- `state_dict` = dictionary of layer names → weight tensors. `torch.save` uses pickle inside.
+- Don't save the whole model (`torch.save(model)`) — it depends on the class name/location, breaks if I rename/move it.
+- Later (Hugging Face): `.safetensors` = same idea, no pickle → safer (pickle can run code) and faster.
+- Check: loaded model gave exactly **0.8627** again (same weights, no randomness in eval, test shuffle=False). ~0.10 would mean random weights.
 
 ## TensorFlow → PyTorch (for the ResNet rewrite)
 | TensorFlow / Keras | PyTorch |

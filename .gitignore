@@ -1,0 +1,10 @@
+# Python
+__pycache__/
+.ipynb_checkpoints/
+.venv/
+
+# Datasets and model files (too big for Git)
+data/
+*.pth
+*.pt
+*.safetensors
