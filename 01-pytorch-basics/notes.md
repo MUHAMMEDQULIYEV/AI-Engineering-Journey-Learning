@@ -1,4 +1,4 @@
-# 01 · PyTorch Basics
++# 01 · PyTorch Basics
 
 **Week 1 (Sep 29 – Oct 4, 2026)** · Source: [PyTorch "Learn the Basics"](https://docs.pytorch.org/tutorials/beginner/basics/intro.html)
 
