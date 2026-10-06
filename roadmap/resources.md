@@ -4,20 +4,28 @@
 
 ## Courses and videos
 
-| Topic | Main source | Cost | Lookup only |
-|---|---|---|---|
-| Tokenization, BPE | [Karpathy: Let's build the GPT Tokenizer](https://www.youtube.com/watch?v=zduSFxRajkE) | free | Krish Naik *Data Science/ML/DL/NLP Bootcamp* (Udemy), NLP preprocessing lectures |
-| Attention intuition | [3Blue1Brown: Neural networks, ch.5–6](https://www.3blue1brown.com/topics/neural-networks) | free | *Understanding Deep Learning* ch.12 |
-| Mini-GPT | [Karpathy: Let's build GPT](https://www.youtube.com/watch?v=kCc8FmEb1nY) (Neural Networks: Zero to Hero) | free | Raschka's book (below) |
-| LLM APIs, Gradio, tools, HF, RAG, fine-tuning | **[Ed Donner: AI Engineer Core Track](https://www.udemy.com/course/llm-engineering-master-ai-and-large-language-models/)** (Udemy) | paid / Udemy subscription | [HF LLM Course](https://huggingface.co/learn/llm-course), [OpenAI Cookbook](https://cookbook.openai.com), Anthropic Academy (Claude API) |
-| Retrieval, vector databases | *Hands-On LLMs* ch.8 (semantic search + RAG) + [Chroma docs](https://docs.trychroma.com) | library / free | pgvector docs, rank_bm25 |
-| Agents | **[Hugging Face Agents Course](https://huggingface.co/learn/agents-course)** | free + certificate | Ed Donner *AI Engineer Agentic Track* (Udemy) |
-| MCP | **[Hugging Face MCP Course](https://huggingface.co/learn/mcp-course)** | free + certificate | Anthropic Academy MCP course |
-| Evals | [Hamel Husain: Evals FAQ + free email course](https://ai.hamel.dev/eval-course), DeepLearning.AI *Production-Ready AI Agents* | free | deepeval docs |
-| Deploy | FastAPI docs + Docker *Get started* | free | — |
-| Big map | [mlabonne/llm-course](https://github.com/mlabonne/llm-course), LLM Engineer track | free | monthly review only |
+| Block | Topic | Main source | Cost | Lookup only |
+|---|---|---|---|---|
+| 1 | Tokenization, BPE | [Karpathy: Let's build the GPT Tokenizer](https://www.youtube.com/watch?v=zduSFxRajkE) | free | Krish Naik *Data Science/ML/DL/NLP Bootcamp* (Udemy), NLP preprocessing lectures |
+| 2 | Attention intuition | [3Blue1Brown: Neural networks, ch.5–6](https://www.3blue1brown.com/topics/neural-networks) | free | *Understanding Deep Learning* ch.12 |
+| 3 | Mini-GPT | [Karpathy: Let's build GPT](https://www.youtube.com/watch?v=kCc8FmEb1nY) (Neural Networks: Zero to Hero) | free | Raschka's book (below), lookup only |
+| 4–5 | LLM APIs, Gradio, tool calling, HF, RAG, fine-tuning | **[Ed Donner: AI Engineer Core Track](https://www.udemy.com/course/llm-engineering-master-ai-and-large-language-models/)** (Udemy) | paid / Udemy subscription | [HF LLM Course](https://huggingface.co/learn/llm-course), [OpenAI Cookbook](https://cookbook.openai.com), Anthropic Academy (Claude API + MCP courses) |
+| 4–8 | API reference | the docs of the provider you use: [Anthropic API docs](https://docs.claude.com) (verify URL), [OpenAI API docs](https://platform.openai.com/docs) | free | — |
+| 4 | Structured output | [Pydantic docs](https://docs.pydantic.dev) (define the schema) | free | your provider's structured-output / tool-use docs |
+| 5 | Retrieval, vector databases | *Hands-On LLMs* ch.8 (semantic search + RAG) + [Chroma docs](https://docs.trychroma.com) | library / free | pgvector docs, rank_bm25 |
+| 5 | Deploy | FastAPI docs + Docker *Get started* | free | — |
+| 6 | Agents | **[Hugging Face Agents Course](https://huggingface.co/learn/agents-course)** | free + certificate | Ed Donner *AI Engineer Agentic Track* (Udemy) |
+| 6 | MCP | **[Hugging Face MCP Course](https://huggingface.co/learn/mcp-course)** | free + certificate | [MCP docs](https://modelcontextprotocol.io) |
+| 7 | Evals | Hamel Husain: Evals FAQ + free email course ([ai.hamel.dev/eval-course](https://ai.hamel.dev/eval-course), verify URL) | free | DeepLearning.AI short course on production AI agents (title "Production-Ready AI Agents", verify), deepeval docs |
+| 7 | Tracing, cost, latency | [Langfuse docs](https://langfuse.com/docs) | free tier | Arize Phoenix docs (verify) |
+| 8 | LoRA fine-tuning | Ed Donner course, fine-tuning section (course Week 7: LoRA/QLoRA) | Udemy | [HF PEFT docs](https://huggingface.co/docs/peft) |
+| 8 | Quantization + serving | [vLLM docs](https://docs.vllm.ai) | free | HF Transformers quantization docs |
+| 8 | Interview prep, LLM system design | *LLM Engineer's Handbook* (book below) + explaining your own flagship's design in 5 minutes | library | Chip Huyen, [ML Interviews Book](https://huyenchip.com/ml-interviews-book/) (free online) |
+| monthly | Big map | [mlabonne/llm-course](https://github.com/mlabonne/llm-course), LLM Engineer track | free | monthly review only |
 
-**Money and hardware:** budget about **$10** for an API key (OpenRouter or OpenAI) when Block 4 starts. Local models with Ollama work only for small (1–3B) models on 8 GB RAM. GPU: Google Colab, with **Kaggle** (about 30 GPU hours/week) as the backup.
+**Ed Donner course weeks by topic** (the course gets updated, so trust the topic name over the number): Week 1 = LLM APIs, first app · Week 2 = Gradio UI + tool calling · Week 3 = Hugging Face pipelines + tokenizers · Week 5 = RAG · Week 7 = fine-tuning (LoRA/QLoRA).
+
+**Money and hardware:** an API key (OpenRouter, OpenAI or Anthropic) from Block 4. My estimate: **about $20–40 over the whole plan** (most of it in Blocks 5–7, when evals run many calls). Set a monthly spending limit on the key. Local models with Ollama work only for small (1–3B) models on 8 GB RAM. GPU: Google Colab, with **Kaggle** (about 30 GPU hours/week) as the backup.
 
 **What I don't use:** many overlapping "complete AI bootcamp" courses, paid cohorts, and a new course every month. If you have a Udemy subscription, put only your 1–2 active courses in one list and open Udemy only through that list.
 
@@ -26,12 +34,13 @@ Read only the chapter for the current block. Borrow at most 2 at a time (1 main 
 
 | Block | Book | Use | Free code |
 |---|---|---|---|
-| 1–3 ⭐ | Sebastian Raschka, *Build a Large Language Model (From Scratch)*, Manning 2025 | ch.2 tokenization/BPE, ch.3 attention, ch.4 GPT | [rasbt/LLMs-from-scratch](https://github.com/rasbt/LLMs-from-scratch) |
+| 1–3 (lookup) | Sebastian Raschka, *Build a Large Language Model (From Scratch)*, Manning 2025 | lookup next to Karpathy: ch.2 tokenization/BPE, ch.3 attention, ch.4 GPT | [rasbt/LLMs-from-scratch](https://github.com/rasbt/LLMs-from-scratch) |
 | 4–5 ⭐ | Jay Alammar & Maarten Grootendorst, *Hands-On Large Language Models*, O'Reilly 2024 | embeddings, semantic search, RAG, prompting | [HandsOnLLM](https://github.com/HandsOnLLM/Hands-On-Large-Language-Models) |
 | 4 (ref) | Lewis Tunstall et al., *Natural Language Processing with Transformers*, O'Reilly 2022 | Hugging Face pipelines, tokenizers | [nlp-with-transformers/notebooks](https://github.com/nlp-with-transformers/notebooks) |
 | 6 (ref) | Mayo Oshin & Nuno Campos, *Learning LangChain*, O'Reilly 2025 | only if your agent uses LangGraph | — |
-| 7–8 | Chip Huyen, *Designing Machine Learning Systems*, O'Reilly 2022 | production, monitoring, evals mindset | — |
-| 7–8 | Chip Huyen, *AI Engineering*, O'Reilly 2025 | the whole LLM-app stack | — |
+| 7–8 ⭐ | Chip Huyen, *AI Engineering*, O'Reilly 2025 | the whole LLM-app stack, evals | — |
+| 8 (ref) | Paul Iusztin & Maxime Labonne, *LLM Engineer's Handbook*, Packt 2024 (verify) | end-to-end LLM system design, interview prep | — |
+| optional | Chip Huyen, *Designing Machine Learning Systems*, O'Reilly 2022 | classic ML production mindset (older than LLM apps) | — |
 | optional | Martin Kleppmann, *Designing Data-Intensive Applications* | backend depth for interviews | — |
 
 ### Free and legal PDFs / online books
@@ -42,20 +51,4 @@ Read only the chapter for the current block. Borrow at most 2 at a time (1 main 
 - Deisenroth et al., *Mathematics for Machine Learning*: [mml-book.github.io](https://mml-book.github.io)
 
 For paid books: use your university library plus the free official code repos. No pirated PDFs.
-
-### For INHA University students 🇰🇷
-All of these are English editions at 정석학술정보관 (checked in the catalog on 2026-10-06):
-
-| Book | Call number |
-|---|---|
-| Raschka, *Build a Large Language Model (From Scratch)* | 006.3 R223b |
-| Alammar, *Hands-On Large Language Models* | 006.35 A318h |
-| Tunstall, *NLP with Transformers* | 006.35 T927n |
-| Oshin, *Learning LangChain* | 006.3 O82L |
-| Huyen, *Designing Machine Learning Systems* | 006.31 H987d |
-| Kleppmann, *Designing Data-Intensive Applications* | 005.3 K64d |
-| Stevens, *Deep Learning with PyTorch* | 006.31 S844d |
-| Prince, *Understanding Deep Learning* | 006.31 P954u |
-| James, *ISL with Applications in Python* | 519.5 I59n |
-
-*AI Engineering* (Huyen) and *LLM Engineer's Handbook* are only in Korean translation there.
+Campus library: I checked which of these my library has; the call numbers are in my private notes.

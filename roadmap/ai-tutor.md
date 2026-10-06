@@ -3,6 +3,7 @@
 **Main rule:** the AI is your **tutor, reviewer and planner**. It is not your homework machine. If it writes your code, you learn nothing.
 
 I use [Claude Code](https://claude.com/claude-code) opened inside my learning repo. A `CLAUDE.md` file there tells it my plan and how to teach me (see [../CLAUDE.md](../CLAUDE.md)). Any assistant that can read your files works the same way.
+> Note: my `CLAUDE.md` points to private files in my home folder (`~/Claude_KNow_About_me/…`). That's just my setup. Use your own paths for `NEXT.md`, the session log and check-ins.
 
 ---
 
@@ -10,10 +11,21 @@ I use [Claude Code](https://claude.com/claude-code) opened inside my learning re
 
 | When | You type | The AI does |
 |---|---|---|
-| **Start** (2 min) | `Start session` | Reads your `NEXT.md` + today's row in the plan. Asks you **1 recall question** about an old topic and **1 predict question** about today's topic. |
+| **Start** (2 min) | `Start session` | Reads your `NEXT.md`, today's row and your session log. Asks **1 recall question** on a topic that is due (from the log's "next due" column). After you answer, **1 predict question** about today's topic. Then the first tiny step. |
 | **During** | your questions | Gives a **hint first**, never the full solution. Answers with small examples and one question at a time. |
 | **Stuck 15 min** | *"I'm on <today's row>. I did X. I'm stuck on Y. What's my next 30-minute step?"* | Gives one small next step. |
-| **End** (5 min) | `End session` | Reads your notebook, names **skipped exercises and open bugs**, writes your NEXT line, gives a date to re-test today's topic, and reminds you to commit. |
+| **End** (5 min) | `End session` | The 5 steps below. |
+
+**End session** (the same steps as in my `CLAUDE.md`):
+1. Read the notebook on disk. Name skipped exercises and open bugs plainly.
+2. Add one row to your session log ([template](templates/session-log.md)): date, plan row, output (commit), skipped/open, 🧠 recalled → next due date for today's topic.
+3. Write the NEXT line in your `NEXT.md`.
+4. Optional: add the next study day's task to your to-do app (I use Notion). Skip it on rest days.
+5. Remind you to commit + push.
+
+**Minimum day (15 min):** End session is 2 lines: the NEXT line + commit + push. No log row needed.
+
+**One question at a time.** When a command has several questions (Start session, a quiz), the AI asks them in order and waits for each answer. Only End session, the weekly check-in and the monthly review may give a multi-part answer.
 
 Put `Start session` in your calendar event so the first step needs no thinking.
 
@@ -21,7 +33,7 @@ Put `Start session` in your calendar event so the first step needs no thinking.
 
 | When | You type | The AI does |
 |---|---|---|
-| Last study day of the week | `Weekly check-in` + what you did, blockers, energy 1–10, **proof** (commit links) | Writes it as one Sunday row in the session log, compares with the plan and writes next week's days |
+| Last study day of the week (REVIEW day) | `Weekly check-in` | Fills [templates/weekly-checkin.md](templates/weekly-checkin.md) with you (what you did + **proof** commit links, blockers, skipped, energy 1–10, one win), compares with the plan, writes next week's days, and links it from that day's session-log row |
 | Last review of the month | `Monthly review` | Writes next month's daily rows and checks the plan against the mlabonne map and real job posts |
 
 ---
@@ -31,7 +43,7 @@ Put `Start session` in your calendar event so the first step needs no thinking.
 **Learn a concept**
 ```
 Explain <concept> like I know <thing I know>. Keep it short.
-Then give me 3 questions. Don't give answers until I reply.
+Then ask me 3 questions, one at a time. Wait for my answer before the next.
 ```
 
 **Check my understanding**
@@ -54,7 +66,7 @@ Review @<file>. Don't rewrite it. Tell me what a professional would do different
 
 **Quiz**
 ```
-Quiz me on <topic>: 5 questions. 2 concept, 2 "predict the output", 1 "find the bug".
+Quiz me on <topic>: 5 questions, one at a time. 2 concept, 2 "predict the output", 1 "find the bug".
 ```
 
 **Bad week**
@@ -75,7 +87,7 @@ I did almost nothing this week because <reason>. Shrink next week's plan so I ca
 ## Don'ts
 - ❌ "Write section 3 for me" / "Build my mini-GPT"
 - ❌ Copy code you can't explain line by line
-- ❌ Ask for a new course in the middle of a block (write it in `IDEAS.md`)
+- ❌ Ask for a new course in the middle of a block (write it in your `IDEAS.md` parking list)
 - ❌ Hide a bad week. Bad weeks are the most important check-ins.
 
 > Okay to ask for code: boilerplate you already understand (configs, plotting), or after you've tried yourself and want to compare.
