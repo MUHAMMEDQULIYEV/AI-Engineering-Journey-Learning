@@ -18,9 +18,9 @@ I made it for myself and I follow it in public in this repo. You can copy it and
 | Phase | Months | Focus | Output |
 |---|---|---|---|
 | **1. Foundations** | 1–2 | Tokenization, BPE, embeddings, attention, a transformer from scratch (PyTorch) | Mini-GPT repo |
-| **2. LLM apps** | 3–4 | LLM APIs, prompting, structured output, tool calling, Gradio, Hugging Face, RAG | Small apps + flagship v0 |
+| **2. LLM apps** | 3–4 | LLM APIs, prompting, structured output, tool calling, Gradio, Hugging Face, RAG (chunking, hybrid search, reranking) | Small apps + flagship v0 **deployed**, start applying |
 | **3. Agents** | 5–6 | Agents, MCP, FastAPI, Docker, deploy | Flagship project with an agent, deployed |
-| **4. Quality + job** | 7–9 | Evals, statistics for evals, LoRA basics, portfolio, CV | Job-ready GitHub |
+| **4. Quality + job** | 7–9 | Statistics for evals, evals, tracing + cost, LoRA + serving basics, portfolio | Job-ready GitHub |
 
 Why this order: most "AI engineer" jobs in 2026 are about the **application layer** (APIs → RAG → agents → evals → deploy), not training models.
 Phase 1 is short on purpose. It makes you *understand* what an LLM does, and then you move on to building.
@@ -66,7 +66,7 @@ Other days are **optional**. Nothing later depends on them, so zero is fine.
 | [resources.md](resources.md) | Courses (Udemy + free), books, free legal PDFs |
 | [ai-tutor.md](ai-tutor.md) | How to use Claude (or any AI assistant) as a tutor, not an answer machine |
 | [bad-days.md](bad-days.md) | What to do when you feel tired, bored, lost or unmotivated |
-| [templates/](templates/) | `NEXT.md`, session log and weekly check-in templates |
+| [templates/](templates/) | `NEXT.md` and the session log (the only log; the weekly check-in is its Sunday row) |
 
 ## How to start today
 1. Copy `templates/NEXT.md` into your own repo.

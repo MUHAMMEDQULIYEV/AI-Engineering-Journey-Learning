@@ -32,5 +32,5 @@ Read this table on a calm day (at your weekly review), not in the bad moment.
 - **The minimum day counts.** 15 minutes + 1 commit keeps the chain alive.
 - **Never miss twice.** One missed day is normal. Two in a row is the old pattern.
 - **No restart after a bad week.** Don't make a new plan. Continue from your `NEXT.md`.
-- **Look at what you already did:** your commit history and a `wins.md` list of small wins.
+- **Look at what you already did:** your commit history. It is your list of wins.
 - **You're not lazy.** If you can go to the gym or show up to class, you can be consistent. The problem is usually *not knowing the next step*, and the plan + NEXT line solve that.

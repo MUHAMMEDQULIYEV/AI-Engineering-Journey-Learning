@@ -8,3 +8,5 @@ data/
 *.pth
 *.pt
 *.safetensors
+papers/
+CIFAR10-Implementation

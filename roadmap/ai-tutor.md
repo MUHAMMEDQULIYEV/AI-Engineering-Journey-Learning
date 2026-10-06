@@ -21,7 +21,7 @@ Put `Start session` in your calendar event so the first step needs no thinking.
 
 | When | You type | The AI does |
 |---|---|---|
-| Last study day of the week | `Weekly check-in` + what you did, blockers, energy 1–10, **proof** (commit links) | Compares with the plan and writes next week's days |
+| Last study day of the week | `Weekly check-in` + what you did, blockers, energy 1–10, **proof** (commit links) | Writes it as one Sunday row in the session log, compares with the plan and writes next week's days |
 | Last review of the month | `Monthly review` | Writes next month's daily rows and checks the plan against the mlabonne map and real job posts |
 
 ---

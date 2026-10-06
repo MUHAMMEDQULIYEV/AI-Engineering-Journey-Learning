@@ -10,7 +10,7 @@
 | Attention intuition | [3Blue1Brown: Neural networks, ch.5–6](https://www.3blue1brown.com/topics/neural-networks) | free | *Understanding Deep Learning* ch.12 |
 | Mini-GPT | [Karpathy: Let's build GPT](https://www.youtube.com/watch?v=kCc8FmEb1nY) (Neural Networks: Zero to Hero) | free | Raschka's book (below) |
 | LLM APIs, Gradio, tools, HF, RAG, fine-tuning | **[Ed Donner: AI Engineer Core Track](https://www.udemy.com/course/llm-engineering-master-ai-and-large-language-models/)** (Udemy) | paid / Udemy subscription | [HF LLM Course](https://huggingface.co/learn/llm-course), [OpenAI Cookbook](https://cookbook.openai.com), Anthropic Academy (Claude API) |
-| Vector databases | — | — | Chroma / pgvector docs |
+| Retrieval, vector databases | *Hands-On LLMs* ch.8 (semantic search + RAG) + [Chroma docs](https://docs.trychroma.com) | library / free | pgvector docs, rank_bm25 |
 | Agents | **[Hugging Face Agents Course](https://huggingface.co/learn/agents-course)** | free + certificate | Ed Donner *AI Engineer Agentic Track* (Udemy) |
 | MCP | **[Hugging Face MCP Course](https://huggingface.co/learn/mcp-course)** | free + certificate | Anthropic Academy MCP course |
 | Evals | [Hamel Husain: Evals FAQ + free email course](https://ai.hamel.dev/eval-course), DeepLearning.AI *Production-Ready AI Agents* | free | deepeval docs |
@@ -38,7 +38,7 @@ Read only the chapter for the current block. Borrow at most 2 at a time (1 main 
 - Jurafsky & Martin, *Speech and Language Processing*, 3rd ed. draft: [web.stanford.edu/~jurafsky/slp3](https://web.stanford.edu/~jurafsky/slp3/) (tokenization, embeddings, transformers, RAG)
 - Simon Prince, *Understanding Deep Learning*: [udlbook.github.io](https://udlbook.github.io/udlbook/) (ch.12 transformers)
 - Zhang et al., *Dive into Deep Learning*: [d2l.ai](https://d2l.ai) (ch.11 attention)
-- James et al., *An Introduction to Statistical Learning with Python (ISLP)*: [statlearning.com](https://www.statlearning.com) (statistics refresh, Block 8)
+- James et al., *An Introduction to Statistical Learning with Python (ISLP)*: [statlearning.com](https://www.statlearning.com) (statistics refresh, Block 7)
 - Deisenroth et al., *Mathematics for Machine Learning*: [mml-book.github.io](https://mml-book.github.io)
 
 For paid books: use your university library plus the free official code repos. No pirated PDFs.
