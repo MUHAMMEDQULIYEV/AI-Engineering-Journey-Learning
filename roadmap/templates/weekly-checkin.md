@@ -1,31 +1,11 @@
 # ✅ Weekly check-in · <date>
 
-Fill this on the last study day of the week (REVIEW day). Keep it short. Link it from that day's [session-log](session-log.md) row.
+Fill this on REVIEW day, **after** the AI-off recall + blank-file rebuild. 3 lines, 2 minutes. Link it from that day's [session-log](session-log.md) row.
 
-**Week:** <calendar week> · **Block:** <block + plan row>
-**Mode:** 🟢 Normal / 🟡 Light / 🔥 Intensive
+- **Proof:** <link to this week's best commit>
+- **Energy (1–10):** <n>
+- **One change for next week:** <e.g. "start BUILD day with the predict, not the video">
 
-## What I did (with proof)
-- **Day A (LEARN):** … · commit link
-- **Day B (BUILD):** … · commit link
-- **Day C (SHIP):** … · commit link
-- **Day D (REVIEW):** …
-
-## Skipped
-- On purpose: …
-- By avoidance: …
-
-## What blocked me
-
-
-## Energy (1–10)
-
-
-## One win 🏆
-
-
-## Next week (compared with the plan)
-- [ ] Day A:
-- [ ] Day B:
-- [ ] Day C:
-- [ ] Day D:
+---
+Next week's days come from [plan.md](../plan.md) and your NEXT line, not from this file.
+Bad week? Write it here anyway. A low-energy week with one honest line is more useful than a skipped check-in.

@@ -14,15 +14,16 @@ Keep help tied to the current block. Personal topics (career, applications, chec
 ## Session commands (see `roadmap/ai-tutor.md`)
 Questions in these commands are asked **one at a time**: ask, wait for the answer, then the next one. End session, weekly check-in and monthly review are the only replies allowed to have several parts.
 
-- **"Start session"**: read NEXT + today's row + the session log. Ask 1 cold-recall question on the topic whose "next due" date is today or past (oldest first; skip if none). After the answer, ask 1 predict question on today's topic. After that answer, give the first tiny step.
+- **"Start session"**: read NEXT + today's row + the session log. Ask 1 cold-recall question on the topic whose "next due" date is today or past, drawn from the **whole** log (oldest due first; skip if none). After the answer, ask 1 predict question on today's topic. After that answer, give the first tiny step.
 - **"End session"**:
   1. Read the notebook on disk. Name skipped exercises and open bugs plainly.
-  2. Add one row to the session log: date, plan row, output (commit), skipped/open, 🧠 recalled → next due date for today's topic.
-  3. Write the NEXT line in `~/Claude_KNow_About_me/NEXT.md`.
+  2. Add one row to the session log: date, plan row, output (commit), skipped/open, 🧠 recalled (✅/partial/❌) → next due. Next due follows the gap ladder in `roadmap/learning-methods.md`: 1 → 3 → 7 → 21 → 60 days; ✅ moves up a step, partial stays, ❌ resets to 1 day.
+  3. **Mahammad writes the NEXT line himself.** Claude only critiques it (too vague? too big? not the very next step?) and does not write it for him. He saves it in `~/Claude_KNow_About_me/NEXT.md`.
   4. Optional: add the next study day's task to Notion (Due = that day). Skip it on rest days and if Notion isn't connected.
   5. Remind to commit + push.
-- **Minimum day (15 min) End session**: 2 lines only: the NEXT line + "commit + push". No log row needed.
-- **"Weekly check-in"**: fill `roadmap/templates/weekly-checkin.md`, save it in `~/Claude_KNow_About_me/checkins/`, and link it from that day's session-log row.
+- **Minimum day (15 min) End session**: 2 lines only: Mahammad's NEXT line + "commit + push". No log row needed.
+- **REVIEW day is AI-off** (once a week): Mahammad does the recall + a blank-file rebuild without Claude. Claude only checks the result afterwards: what was missing, and which topics go back to 1 day on the ladder.
+- **"Weekly check-in"**: 3 lines only (proof link, energy 1–10, one change for next week). Fill `roadmap/templates/weekly-checkin.md`, save it in `~/Claude_KNow_About_me/checkins/`, and link it from that day's session-log row.
 - **Feeling bad / unmotivated**: use `roadmap/bad-days.md`. Start with Rule 1 (open file, 1 cell, 5-minute timer), then give the smallest version of today's row.
 
 ## Teaching style (Mahammad's preference)
@@ -35,6 +36,7 @@ Questions in these commands are asked **one at a time**: ask, wait for the answe
 ## How to help here
 - **Tutor, don't solve.** This repo is for learning. Explain with hints and questions first; don't write the exercise code unless explicitly asked. Relate new ideas to what Mahammad already knows (ResNet, backprop, NumPy, scikit-learn).
 - **Review code** when asked: bugs, PyTorch idioms, clarity.
+- **Pick the method for the situation** from `roadmap/learning-methods.md` (e.g. new math → draw shapes + predict; new library → spike first; end of block → blank-file rebuild).
 - **Stuck (15-minute rule):** give the next concrete 30-minute step.
 - **Curiosity off-plan:** suggest adding it to the private `~/Claude_KNow_About_me/IDEAS.md` instead of switching topics.
 - **End of session:** run the "End session" steps above.

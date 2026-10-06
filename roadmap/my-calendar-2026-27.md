@@ -70,7 +70,7 @@ Use it as an example of how to put the plan into your own calendar. Dates are ta
 ## Mon Nov 23 – Sun Nov 29 · Block 4 · rest of course Week 1 + structured output
 - Mon Nov 23 · optional / rest
 - ☐ Tue Nov 24 · LEARN: rest of Week 1 (≤30 min, skip what you don't need) · prompting: system prompt, few-shot
-- Wed Nov 25 · optional / rest
+- Wed Nov 25 · optional: **applications v0**: CV draft (repo #1 + Block 4 apps so far)
 - ☐ Thu Nov 26 · BUILD: structured output: LLM → JSON → Pydantic model, 5 test inputs
 - Fri Nov 27 · optional / rest
 - ☐ Sat Nov 28 · SHIP: **catch-up** (push the extractor, close everything open)
@@ -79,7 +79,7 @@ Use it as an example of how to put the plan into your own calendar. Dates are ta
 ## Mon Nov 30 – Sun Dec 6 · Block 4 · course Week 2 (Gradio + tools)
 - Mon Nov 30 · optional / rest
 - ☐ Tue Dec 1 · LEARN: course Week 2, Gradio part (≤30 min) + predict
-- Wed Dec 2 · optional / rest
+- Wed Dec 2 · optional: applications v0: target list of ~30 companies + a private tracker
 - ☐ Thu Dec 3 · BUILD: tool-calling part (≤30 min) · Gradio UI for your Week 1 app without the video
 - Fri Dec 4 · optional / rest
 - ☐ Sat Dec 5 · SHIP: assistant with 1 real tool (called on 3 test prompts) + push
@@ -88,8 +88,8 @@ Use it as an example of how to put the plan into your own calendar. Dates are ta
 ## Mon Dec 7 – Sun Dec 13 · Block 4 · embeddings + catch-up
 - Mon Dec 7 · optional / rest
 - ☐ Tue Dec 8 · LEARN: embeddings + cosine similarity on 3 sentences (predict the order first). Course Week 2 not done? Finish it today instead
-- Wed Dec 9 · optional / rest
-- ☐ Thu Dec 10 · BUILD: embed ~20 flagship docs (`sentence-transformers`), top-3 search on 5 questions
+- Wed Dec 9 · optional: send the **first 2–3 applications**
+- ☐ Thu Dec 10 · BUILD: embed ~20 flagship docs with a multilingual embedder (bge-m3 or multilingual-e5 (verify)), top-3 search on 5 questions
 - Fri Dec 11 · optional / rest
 - ☐ Sat Dec 12 · SHIP: finish anything open (Block 3 overflow first) + push
 - ☐ Sun Dec 13 · REVIEW: 🧠 LLM API call flow · **confirm or switch the flagship idea** · check-in
@@ -113,15 +113,17 @@ Use it as an example of how to put the plan into your own calendar. Dates are ta
 - ☐ Sun Dec 27 · **monthly review**: write daily rows for Block 5 week 1
 
 ## Block 5 · Flagship v0 + first deploy (winter break 🔥, start with 2–3 easy days)
-Daily rows are written at each review. Weekly milestones (Done criteria are in [plan.md](plan.md)):
+Daily rows are written at each review. Weekly milestones (Done criteria and core/stretch are in [plan.md](plan.md)):
 - ☐ Dec 28 – Jan 3 · naive RAG over ≥50 docs + 20-question eval set and script
-- ☐ Jan 4 – Jan 10 · chunking ×2 + hybrid search + recall@5 table
-- ☐ Jan 11 – Jan 17 · reranker + error analysis + LLM-as-judge + baseline table
-- ☐ Jan 18 – Jan 24 · FastAPI + Docker · latency + cost measured
-- ☐ Jan 25 – Jan 31 · **buffer week** 🟡: fix the top failure causes, nothing new
-- ☐ Feb 1 – Feb 7 · **deploy v0** on HF Spaces + CV/LinkedIn v1 → start applying
+- ☐ Jan 4 – Jan 10 · chunking ×2 + recall@5 table (stretch: hybrid search)
+- ☐ Jan 11 – Thu Jan 21 · error analysis + baseline table (stretch: LLM-as-judge with TPR/TNR, reranker)
+- ☐ Sat Jan 23 – Jan 31 · FastAPI + Docker + Langfuse tracing + pytest + GitHub Actions eval check · latency + cost measured
+- ☐ Feb 1 – Feb 7 · **buffer week** 🟡: fix the top failure causes, nothing new
+- ☐ Feb 8 – Feb 14 · **deploy v0** on HF Spaces + CV/LinkedIn v1 with the live link → keep applying
+
+From Wed Jan 6: every **Wed = 45-min interview + retention slot** (DSA/SQL one week, blank-file rebuild the next; see [plan.md](plan.md)). Mar–Apr: one Wed a month is a mock interview.
 
 ## Later (rows written at each monthly review)
-- ☐ Feb 8 – Apr 4 · Block 6 Agents + MCP (8 weeks)
-- ☐ Apr 5 – May 9 · Block 7 Evals + production (5 weeks, incl. 🟡 spring midterms (approx, late Apr))
+- ☐ Feb 15 – Mar 28 · Block 6 Agents + MCP (6 weeks; HF courses lookup only)
+- ☐ Mar 29 – May 9 · Block 7 Evals + production (6 weeks, incl. 🟡 spring midterms (approx, late Apr))
 - ☐ May 10 – Aug 1 · Block 8 Job-ready (12 weeks, incl. 🟡 spring finals (approx)) → end of the 10 months

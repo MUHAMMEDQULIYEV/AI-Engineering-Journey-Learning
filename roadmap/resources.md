@@ -13,17 +13,32 @@
 | 4–8 | API reference | the docs of the provider you use: [Anthropic API docs](https://docs.claude.com) (verify URL), [OpenAI API docs](https://platform.openai.com/docs) | free | — |
 | 4 | Structured output | [Pydantic docs](https://docs.pydantic.dev) (define the schema) | free | your provider's structured-output / tool-use docs |
 | 5 | Retrieval, vector databases | *Hands-On LLMs* ch.8 (semantic search + RAG) + [Chroma docs](https://docs.trychroma.com) | library / free | pgvector docs, rank_bm25 |
+| 4–5 | Multilingual embeddings (Azerbaijani text) | [BAAI/bge-m3](https://huggingface.co/BAAI/bge-m3) or [intfloat/multilingual-e5](https://huggingface.co/intfloat/multilingual-e5-base) (verify Azerbaijani quality on 10 of your own queries) | free | [MTEB leaderboard](https://huggingface.co/spaces/mteb/leaderboard) |
 | 5 | Deploy | FastAPI docs + Docker *Get started* | free | — |
 | 6 | Agents | **[Hugging Face Agents Course](https://huggingface.co/learn/agents-course)** | free + certificate | Ed Donner *AI Engineer Agentic Track* (Udemy) |
 | 6 | MCP | **[Hugging Face MCP Course](https://huggingface.co/learn/mcp-course)** | free + certificate | [MCP docs](https://modelcontextprotocol.io) |
 | 7 | Evals | Hamel Husain: Evals FAQ + free email course ([ai.hamel.dev/eval-course](https://ai.hamel.dev/eval-course), verify URL) | free | DeepLearning.AI short course on production AI agents (title "Production-Ready AI Agents", verify), deepeval docs |
 | 7 | Tracing, cost, latency | [Langfuse docs](https://langfuse.com/docs) | free tier | Arize Phoenix docs (verify) |
-| 8 | LoRA fine-tuning | Ed Donner course, fine-tuning section (course Week 7: LoRA/QLoRA) | Udemy | [HF PEFT docs](https://huggingface.co/docs/peft) |
+| 8 | LoRA fine-tuning | [HF PEFT docs](https://huggingface.co/docs/peft) + [TRL `SFTTrainer` docs](https://huggingface.co/docs/trl) on **your own dataset** (see repo #3 below) | free | Ed Donner course Week 7 (LoRA/QLoRA), for the idea only |
 | 8 | Quantization + serving | [vLLM docs](https://docs.vllm.ai) | free | HF Transformers quantization docs |
 | 8 | Interview prep, LLM system design | *LLM Engineer's Handbook* (book below) + explaining your own flagship's design in 5 minutes | library | Chip Huyen, [ML Interviews Book](https://huyenchip.com/ml-interviews-book/) (free online) |
+| from Jan, weekly 45 min | DSA + SQL practice | [LeetCode](https://leetcode.com) (easy/medium arrays, hashing, two pointers) + LeetCode *SQL 50* study plan (verify name) | free tier | [NeetCode](https://neetcode.io) roadmap, [SQLBolt](https://sqlbolt.com) |
 | monthly | Big map | [mlabonne/llm-course](https://github.com/mlabonne/llm-course), LLM Engineer track | free | monthly review only |
 
 **Ed Donner course weeks by topic** (the course gets updated, so trust the topic name over the number): Week 1 = LLM APIs, first app · Week 2 = Gradio UI + tool calling · Week 3 = Hugging Face pipelines + tokenizers · Week 5 = RAG · Week 7 = fine-tuning (LoRA/QLoRA).
+
+**If Udemy goes away (free fallback for every Udemy part):**
+- Blocks 4–5 (Ed Donner): [HF LLM Course](https://huggingface.co/learn/llm-course) (HF pipelines, tokenizers) + [OpenAI Cookbook](https://cookbook.openai.com) (API calls, tool calling, RAG examples) + [Anthropic courses on GitHub](https://github.com/anthropics/courses) (verify) + [Gradio docs](https://www.gradio.app/docs). The *Hands-On LLMs* book covers RAG.
+- Block 6 (Agentic Track): nothing lost, it is lookup only; the HF Agents + MCP courses are free.
+- Block 8 (LoRA): HF PEFT + TRL docs and their example notebooks (verify which notebooks are current).
+- Block 1 (Krish Naik): lookup only; Karpathy + Raschka's free code cover it.
+
+**Repo #3 (LoRA) uses its own data, not the course's.** Distill a small dataset from an API model: 500–2k examples of one narrow task (e.g. turn a question into your JSON schema), checked by a script, split train/test. Fine-tune a small open model on it and report base vs. LoRA on the test split. This makes the repo yours and it doesn't depend on any course.
+
+**Public demo safety (before the link goes on your CV):**
+- a **hard spending cap** on the API key (provider dashboard), separate from your study key
+- a **rate limit** per IP (or a simple password) on the endpoint
+- a **cache** for repeated questions, so a refresh doesn't cost money
 
 **Money and hardware:** an API key (OpenRouter, OpenAI or Anthropic) from Block 4. My estimate: **about $20–40 over the whole plan** (most of it in Blocks 5–7, when evals run many calls). Set a monthly spending limit on the key. Local models with Ollama work only for small (1–3B) models on 8 GB RAM. GPU: Google Colab, with **Kaggle** (about 30 GPU hours/week) as the backup.
 

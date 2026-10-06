@@ -46,7 +46,7 @@ Pick 4 days a week that are usually free. Give each day one job:
 | Day A | **LEARN**: ≤30 min video, then predict questions, then code the idea | the concept runs in a notebook + 3 lines of notes |
 | Day B | **BUILD**: write the main thing *without the video* | it runs end to end (ugly is fine) |
 | Day C | **SHIP**: fix, test, README, commit + push | a commit on GitHub |
-| Day D | **REVIEW**: explain the week from memory, plan next week | next week is written down |
+| Day D | **REVIEW** (AI-off): recall + rebuild from a blank file, then plan next week; the AI checks only afterwards | next week is written down |
 
 Other days are **optional**. Nothing later depends on them, so zero is fine.
 
@@ -59,6 +59,7 @@ Other days are **optional**. Nothing later depends on them, so zero is fine.
 3. **70/30:** at least 70% coding, at most 30% watching.
 4. **Every session ends with a commit** and a one-line NEXT. In watch-only or exam weeks, a commit of your `notes.md` counts.
 5. **Predict before you run.** Before each cell, write what you think it will print or what shape it will have.
+   More methods (recall, spacing, blank-file rebuilds) and which one fits which situation: [learning-methods.md](learning-methods.md).
 6. **Buffers:** the last SHIP day of every month is a catch-up day: **no new topic**, only finish what is open (if nothing is open, rest). Before a big deadline (an exam period, or a date that needs a full week of your time, like an application or project due date), keep the week before it empty.
 7. **Exam weeks are light weeks** (≤40 min per day, watch + notes, no new code). They are planned, not failures.
 8. **Never miss twice.** Missing one study day is normal. Two *planned* study days in a row is the start of quitting. (Optional days and planned rest days don't count.)
@@ -72,6 +73,7 @@ Other days are **optional**. Nothing later depends on them, so zero is fine.
 | [plan.md](plan.md) | Block-by-block plan, every study day |
 | [my-calendar-2026-27.md](my-calendar-2026-27.md) | The same plan with my real dates (Oct 2026 →), as an example |
 | [resources.md](resources.md) | Courses (Udemy + free), books, free legal PDFs |
+| [learning-methods.md](learning-methods.md) | Which study method to use when (recall, spacing, predict, blank-file rebuild), the recall gap ladder, what to avoid |
 | [ai-tutor.md](ai-tutor.md) | How to use Claude (or any AI assistant) as a tutor, not an answer machine |
 | [bad-days.md](bad-days.md) | What to do when you feel tired, bored, lost or unmotivated |
 | [templates/](templates/) | `NEXT.md`, the session log (the only log, and the only place for recall dates), and the weekly check-in |
