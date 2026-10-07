@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tokenization Step by Step</title>
+<style>
+  :root {
+    --bg: #f7f6f2;
+    --card: #ffffff;
+    --ink: #1d1d1b;
+    --muted: #6b6a64;
+    --line: #e2e0d8;
+    --accent: #3b5bdb;
+    --accent-soft: #e7ecff;
+    --warn: #c2410c;
+    --warn-soft: #fff1e8;
+    --ok: #2f7d4f;
+    --chip: #f0efe9;
+    --chip-l: 88%;
+    --chip-s: 70%;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #151514; --card: #1f1f1d; --ink: #ecebe6; --muted: #9c9b94; --line: #33332f;
+      --accent: #8ea6ff; --accent-soft: #252c48; --warn: #fb923c; --warn-soft: #3a2416;
+      --ok: #6ccf93; --chip: #2a2a27; --chip-l: 30%; --chip-s: 45%;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #151514; --card: #1f1f1d; --ink: #ecebe6; --muted: #9c9b94; --line: #33332f;
+    --accent: #8ea6ff; --accent-soft: #252c48; --warn: #fb923c; --warn-soft: #3a2416;
+    --ok: #6ccf93; --chip: #2a2a27; --chip-l: 30%; --chip-s: 45%;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  main { max-width: 920px; margin: 0 auto; padding: 32px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; }
+  .sub { color: var(--muted); margin: 0 0 24px; }
+  code, .mono { font-family: ui-monospace, "JetBrains Mono", Menlo, Consolas, monospace; font-size: .92em; }
+
+  /* pipeline stepper */
+  .pipeline { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 20px; }
+  .pipeline button {
+    flex: 1 1 120px; border: 1px solid var(--line); background: var(--card); color: var(--muted);
+    padding: 10px 8px; border-radius: 10px; cursor: pointer; font: inherit; font-size: .9rem; text-align: left;
+  }
+  .pipeline button b { display: block; color: var(--ink); font-size: .95rem; }
+  .pipeline button.active { border-color: var(--accent); background: var(--accent-soft); }
+  .pipeline button.active b { color: var(--accent); }
+
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px; margin-bottom: 16px; }
+  .card h2 { font-size: 1.15rem; margin: 0 0 6px; }
+  .card p { margin: 6px 0 12px; }
+  .hint { color: var(--muted); font-size: .9rem; }
+
+  textarea {
+    width: 100%; min-height: 96px; resize: vertical; padding: 12px; border-radius: 10px;
+    border: 1px solid var(--line); background: var(--bg); color: var(--ink);
+    font: 15px/1.5 ui-monospace, Menlo, Consolas, monospace;
+  }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 10px; }
+  .pill {
+    border: 1px solid var(--line); background: var(--bg); color: var(--ink); border-radius: 999px;
+    padding: 5px 12px; font: inherit; font-size: .85rem; cursor: pointer;
+  }
+  .pill.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
+  .chip {
+    display: inline-flex; align-items: baseline; gap: 4px; padding: 4px 8px; border-radius: 7px;
+    background: var(--chip); border: 1px solid var(--line);
+    font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .9rem; white-space: pre;
+  }
+  .chip small { color: var(--muted); font-size: .7rem; }
+  .chip.dirty { background: var(--warn-soft); border-color: var(--warn); }
+  .chip .ws { color: var(--warn); font-weight: 700; }
+  .sent { border-left: 3px solid var(--accent); padding: 6px 12px; margin: 8px 0; background: var(--bg); border-radius: 0 8px 8px 0; white-space: pre-wrap; }
+  .sent small { color: var(--muted); display: block; font-size: .75rem; }
+
+  .stats { display: flex; gap: 12px; flex-wrap: wrap; margin: 8px 0; }
+  .stat { flex: 1 1 140px; border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; background: var(--bg); }
+  .stat .n { font-size: 1.6rem; font-weight: 700; }
+  .stat .l { color: var(--muted); font-size: .8rem; }
+
+  .compare { width: 100%; border-collapse: collapse; font-size: .9rem; }
+  .compare th, .compare td { text-align: left; padding: 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .compare th { color: var(--muted); font-weight: 600; font-size: .8rem; }
+  .tablewrap { overflow-x: auto; }
+
+  .gate { border: 2px dashed var(--accent); border-radius: 12px; padding: 16px; background: var(--accent-soft); }
+  .gate input {
+    width: 110px; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--line);
+    background: var(--card); color: var(--ink); font: inherit;
+  }
+  .btn {
+    border: 0; background: var(--accent); color: #fff; padding: 8px 16px; border-radius: 8px;
+    font: inherit; cursor: pointer;
+  }
+  .btn:disabled { opacity: .45; cursor: not-allowed; }
+  .verdict { font-weight: 600; margin-top: 10px; }
+  .verdict.good { color: var(--ok); }
+  .verdict.off { color: var(--warn); }
+
+  .vocab-table { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 6px; }
+  .vocab-table div { display: flex; justify-content: space-between; gap: 8px; padding: 5px 10px; border-radius: 7px; background: var(--chip); font-family: ui-monospace, Menlo, monospace; font-size: .85rem; white-space: pre; }
+  .vocab-table span { color: var(--muted); }
+
+  .flow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: .85rem; color: var(--muted); margin-top: 6px; }
+  .flow span { padding: 3px 8px; border-radius: 6px; background: var(--bg); border: 1px solid var(--line); }
+  .flow span.on { border-color: var(--accent); color: var(--accent); font-weight: 600; }
+
+  .nav { display: flex; justify-content: space-between; margin-top: 8px; }
+  .hidden { display: none; }
+  .legend { font-size: .8rem; color: var(--muted); }
+  .legend .chip { font-size: .75rem; padding: 1px 6px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Tokenization, step by step</h1>
+  <p class="sub">Block 1 · How raw text turns into numbers a model can use. Type any text below and watch each step.</p>
+
+  <div class="card">
+    <h2>Your corpus</h2>
+    <p class="hint">The corpus is all the text you work with. Edit it, or load an example.</p>
+    <textarea id="corpus" spellcheck="false"></textarea>
+    <div class="row" id="presets"></div>
+  </div>
+
+  <nav class="pipeline" id="pipeline"></nav>
+
+  <!-- STEP 1 -->
+  <section class="card step" data-step="0">
+    <h2>1 · Raw text: what the computer actually sees</h2>
+    <p>To the computer, the corpus is one long string of characters. Spaces and line breaks are characters too.
+      Below, <span class="ws mono">·</span> is a space and <span class="ws mono">↵</span> is a newline.</p>
+    <div id="raw" class="sent mono"></div>
+    <div class="stats" id="rawStats"></div>
+  </section>
+
+  <!-- STEP 2 -->
+  <section class="card step" data-step="1">
+    <h2>2 · Sentences (<code>sent_tokenize</code>)</h2>
+    <p>First cut: split the corpus into sentences. It splits after <code>.</code> <code>!</code> <code>?</code> when whitespace follows.
+      Commas and line breaks do <b>not</b> end a sentence.</p>
+    <div id="sentences"></div>
+  </section>
+
+  <!-- STEP 3 -->
+  <section class="card step" data-step="2">
+    <h2>3 · Words / tokens</h2>
+    <p>Second cut: split into tokens. Different tokenizers cut the same text differently. Pick one:</p>
+    <div class="row" id="tokTabs"></div>
+    <p class="hint" id="tokDesc"></p>
+    <div class="chips" id="tokens"></div>
+    <p class="legend">Orange <span class="chip dirty">token</span> = the token still has whitespace or punctuation stuck to it. That makes the vocabulary messy.</p>
+    <div class="stats" id="tokStats"></div>
+    <h2 style="margin-top:18px">Side by side</h2>
+    <div class="tablewrap"><table class="compare" id="compare"></table></div>
+  </section>
+
+  <!-- STEP 4 -->
+  <section class="card step" data-step="3">
+    <h2>4 · Vocabulary: the unique tokens</h2>
+    <p>The vocabulary keeps each different token <b>once</b>. In Python that's a <code>set</code>.
+      Repeats share one entry, so <code>vocab ≤ tokens</code>.</p>
+    <p class="hint">Tokenizer in use: <b id="vocabTok"></b> (change it in step 3)</p>
+    <div class="stats"><div class="stat"><div class="n" id="vTokCount"></div><div class="l">tokens (repeats included)</div></div></div>
+
+    <div class="gate" id="gate">
+      <b>Predict first.</b> How many <b>unique</b> tokens will there be?
+      <div class="row">
+        <input id="guess" type="number" min="0" placeholder="your guess">
+        <button class="btn" id="reveal" disabled>Reveal</button>
+      </div>
+    </div>
+
+    <div id="vocabOut" class="hidden">
+      <div class="verdict" id="verdict"></div>
+      <div class="stats" id="vStats"></div>
+      <p>Same color = same vocab entry. Look at the repeats:</p>
+      <div class="chips" id="colored"></div>
+      <h2 style="margin-top:14px">The vocabulary</h2>
+      <div class="vocab-table" id="vocabList"></div>
+    </div>
+  </section>
+
+  <!-- STEP 5 -->
+  <section class="card step" data-step="4">
+    <h2>5 · Numbers: tokens become IDs</h2>
+    <p>Models can't read strings. Each vocab entry gets an integer ID (here: sorted order), and the text becomes a list of IDs.
+      This list is what goes into the model. It's like class labels in FashionMNIST: just indices.</p>
+    <div id="idsLocked" class="gate">Reveal the vocabulary in step 4 first, then come back.</div>
+    <div id="idsOut" class="hidden">
+      <div class="chips" id="ids"></div>
+      <p class="hint">Model input:</p>
+      <div class="sent mono" id="idList"></div>
+      <p class="hint">And back the other way: an LLM predicts an ID, and a lookup turns it back into text. GPT-2 picks from 50,257 IDs at every position.</p>
+    </div>
+    <h2 style="margin-top:18px">Where this goes next</h2>
+    <div class="flow">
+      <span>corpus</span>→<span>sentences</span>→<span class="on">words (NLTK, today)</span>→<span>characters (Thu)</span>→<span>subwords / BPE (Sat)</span>
+    </div>
+    <p class="hint" style="margin-top:10px">Word vocabularies get huge and can't handle new words. Character vocabularies are tiny but give very long sequences.
+      BPE sits in between. Why that matters is this block's 🧠 question.</p>
+  </section>
+
+  <div class="nav">
+    <button class="pill" id="prev">← Back</button>
+    <button class="pill" id="next">Next →</button>
+  </div>
+</main>
+
+<script>
+const PRESETS = {
+  "Notes example": "I love NLP. I love AI.",
+  "My notebook corpus": "\nBalim seni cox sevirem,yaxsi ki varsan.\nSen yaxsi ki varsan heyatimda,seni seviremss ,that's\n",
+  "Contractions": "I don't like it. That's fine, isn't it? He likes apples!",
+};
+const STEPS = ["Raw text", "Sentences", "Tokens", "Vocabulary", "IDs"];
+
+// ---- tokenizers (simplified ports of the NLTK rules) ----
+function splitSpace(t) { return t.split(" "); }
+
+function wordpunct(t) { return t.match(/\w+|[^\w\s]+/gu) || []; }
+
+function treebank(text) {
+  let t = text;
+  t = t.replace(/([:,])([^\d])/g, " $1 $2");
+  t = t.replace(/([:,])$/g, " $1 ");
+  t = t.replace(/\.\.\./g, " ... ");
+  t = t.replace(/[;@#$%&]/g, " $& ");
+  t = t.replace(/([^.])(\.)([\])}>"']*)\s*$/g, "$1 $2$3 ");   // only the very last period
+  t = t.replace(/[?!]/g, " $& ");
+  t = t.replace(/([^'])' /g, "$1 ' ");
+  t = t.replace(/[\][(){}<>]/g, " $& ");
+  t = t.replace(/--/g, " -- ");
+  t = " " + t + " ";
+  t = t.replace(/"/g, " '' ");
+  t = t.replace(/([^' ])('[sSmMdD]|') /g, "$1 $2 ");
+  t = t.replace(/([^' ])('ll|'LL|'re|'RE|'ve|'VE|n't|N'T) /g, "$1 $2 ");
+  return t.split(/\s+/).filter(Boolean);
+}
+
+function sentTokenize(text) {
+  const out = [];
+  const re = /[^]*?[.!?]+(?=\s|$)|[^]+$/g;
+  let m;
+  while ((m = re.exec(text)) !== null) {
+    const s = m[0].trim();
+    if (s) out.push(s);
+    if (re.lastIndex === m.index) re.lastIndex++;
+  }
+  return out;
+}
+
+function wordTokenize(t) { return sentTokenize(t).flatMap(treebank); }
+
+const TOKENIZERS = {
+  split: { name: 'corpus.split(" ")', fn: splitSpace,
+    desc: "Cuts only at single spaces. Newlines and punctuation stay glued to words, and double spaces make empty tokens." },
+  word: { name: "word_tokenize", fn: wordTokenize,
+    desc: "Splits into sentences first, then splits off punctuation and contractions (that's → that + 's)." },
+  wordpunct: { name: "wordpunct_tokenize", fn: wordpunct,
+    desc: "Letter/digit runs vs punctuation runs. that's → that + ' + s." },
+  treebank: { name: "TreebankWordTokenizer", fn: treebank,
+    desc: "Like word_tokenize but no sentence split first, so only the very last period is cut off (varsan. stays one token)." },
+};
+
+// ---- state ----
+const state = { step: 0, tok: "split", revealed: false };
+const $ = id => document.getElementById(id);
+const esc = s => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const showWs = s => esc(s).replace(/ /g, '<span class="ws">·</span>').replace(/\n/g, '<span class="ws">↵</span>').replace(/\t/g, '<span class="ws">→</span>');
+const isDirty = tok => tok === "" || /\s/.test(tok) || (/[^\w\s]/u.test(tok) && /\w/u.test(tok) && !/^'\w+$|^n't$/i.test(tok));
+
+function hue(s) { let h = 0; for (const c of s) h = (h * 31 + c.codePointAt(0)) % 360; return h; }
+const colorOf = s => `hsl(${hue(s)} var(--chip-s) var(--chip-l))`;
+
+function chip(tok, i, colored) {
+  const style = colored ? ` style="background:${colorOf(tok)};border-color:transparent"` : "";
+  const cls = !colored && isDirty(tok) ? "chip dirty" : "chip";
+  return `<span class="${cls}"${style}>${tok === "" ? '<span class="ws">∅</span>' : showWs(tok)}${i != null ? `<small>${i}</small>` : ""}</span>`;
+}
+
+// ---- render ----
+function render() {
+  const text = $("corpus").value;
+  const T = TOKENIZERS[state.tok];
+  const toks = T.fn(text);
+  const vocab = [...new Set(toks)];
+
+  // step 1
+  $("raw").innerHTML = showWs(text) || '<span class="hint">empty</span>';
+  const spaces = (text.match(/ /g) || []).length, nl = (text.match(/\n/g) || []).length;
+  $("rawStats").innerHTML = stat([...text].length, "characters") + stat(spaces, "spaces") + stat(nl, "newlines");
+
+  // step 2
+  const sents = sentTokenize(text);
+  $("sentences").innerHTML = sents.map((s, i) => `<div class="sent"><small>sentence ${i + 1}</small>${esc(s)}</div>`).join("")
+    + `<div class="stats">${stat(sents.length, "sentences")}</div>`;
+
+  // step 3
+  $("tokTabs").innerHTML = Object.entries(TOKENIZERS).map(([k, v]) =>
+    `<button class="pill mono ${k === state.tok ? "active" : ""}" data-tok="${k}">${v.name}</button>`).join("");
+  $("tokDesc").textContent = T.desc;
+  $("tokens").innerHTML = toks.map((t, i) => chip(t, i, false)).join("");
+  const dirty = toks.filter(isDirty).length;
+  $("tokStats").innerHTML = stat(toks.length, "tokens") + stat(dirty, "messy tokens");
+  $("compare").innerHTML = `<tr><th>Tokenizer</th><th>Tokens</th><th>Messy</th><th>Output</th></tr>` +
+    Object.entries(TOKENIZERS).map(([k, v]) => {
+      const r = v.fn(text);
+      return `<tr><td class="mono">${v.name}</td><td>${r.length}</td><td>${r.filter(isDirty).length}</td>
+        <td><div class="chips" style="margin:0">${r.map(t => chip(t, null, false)).join("")}</div></td></tr>`;
+    }).join("");
+
+  // step 4
+  $("vocabTok").textContent = T.name;
+  $("vTokCount").textContent = toks.length;
+  $("gate").classList.toggle("hidden", state.revealed);
+  $("vocabOut").classList.toggle("hidden", !state.revealed);
+  if (state.revealed) {
+    const g = Number($("guess").value);
+    const v = $("verdict");
+    v.className = "verdict " + (g === vocab.length ? "good" : "off");
+    v.textContent = g === vocab.length ? `Your guess ${g} was exactly right.`
+      : `You guessed ${g}, the answer is ${vocab.length}. Which repeats or messy tokens did you miss?`;
+    $("vStats").innerHTML = stat(toks.length, "tokens") + stat(vocab.length, "vocab (unique)") + stat(toks.length - vocab.length, "repeats removed");
+    $("colored").innerHTML = toks.map(t => chip(t, null, true)).join("");
+    const sorted = [...vocab].sort();
+    $("vocabList").innerHTML = sorted.map((t, i) => `<div>${t === "" ? "∅" : showWs(t)}<span>${i}</span></div>`).join("");
+  }
+
+  // step 5
+  $("idsLocked").classList.toggle("hidden", state.revealed);
+  $("idsOut").classList.toggle("hidden", !state.revealed);
+  if (state.revealed) {
+    const id = new Map([...vocab].sort().map((t, i) => [t, i]));
+    $("ids").innerHTML = toks.map(t => `<span class="chip" style="background:${colorOf(t)};border-color:transparent">${t === "" ? "∅" : showWs(t)} → <b>${id.get(t)}</b></span>`).join("");
+    $("idList").textContent = "[" + toks.map(t => id.get(t)).join(", ") + "]";
+  }
+
+  // stepper + visibility
+  $("pipeline").innerHTML = STEPS.map((s, i) =>
+    `<button class="${i === state.step ? "active" : ""}" data-step="${i}"><b>${i + 1}. ${s}</b></button>`).join("");
+  document.querySelectorAll("section.step").forEach(el => el.classList.toggle("hidden", Number(el.dataset.step) !== state.step));
+  $("prev").disabled = state.step === 0;
+  $("next").disabled = state.step === STEPS.length - 1;
+}
+
+const stat = (n, l) => `<div class="stat"><div class="n">${n}</div><div class="l">${l}</div></div>`;
+
+function resetGuess() { state.revealed = false; $("guess").value = ""; $("reveal").disabled = true; }
+
+// ---- events ----
+$("presets").innerHTML = Object.keys(PRESETS).map(k => `<button class="pill" data-preset="${k}">${k}</button>`).join("");
+$("presets").addEventListener("click", e => {
+  const k = e.target.dataset.preset; if (!k) return;
+  $("corpus").value = PRESETS[k]; resetGuess(); render();
+});
+$("corpus").addEventListener("input", () => { resetGuess(); render(); });
+$("tokTabs").addEventListener("click", e => {
+  const k = e.target.closest("[data-tok]")?.dataset.tok; if (!k) return;
+  state.tok = k; resetGuess(); render();
+});
+$("pipeline").addEventListener("click", e => {
+  const b = e.target.closest("[data-step]"); if (!b) return;
+  state.step = Number(b.dataset.step); render();
+});
+$("prev").onclick = () => { state.step = Math.max(0, state.step - 1); render(); };
+$("next").onclick = () => { state.step = Math.min(STEPS.length - 1, state.step + 1); render(); };
+$("guess").addEventListener("input", () => { $("reveal").disabled = $("guess").value === ""; });
+$("reveal").onclick = () => { state.revealed = true; render(); };
+
+$("corpus").value = PRESETS["Notes example"];
+render();
+</script>
+</body>
+</html>
