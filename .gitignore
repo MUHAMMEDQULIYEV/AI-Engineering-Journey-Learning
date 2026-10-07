@@ -10,3 +10,12 @@ data/
 *.safetensors
 papers/
 CIFAR10-Implementation
+
+# Secrets (API keys, from Block 4 on)
+.env
+.env.*
+
+# Training / app artifacts
+*.ckpt
+wandb/
+chroma/

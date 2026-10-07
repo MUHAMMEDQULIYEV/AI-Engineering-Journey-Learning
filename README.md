@@ -21,11 +21,14 @@ I'm an IT student at INHA University, graduating in 2027. Every study session he
 | 0 | PyTorch basics: tensors, DataLoader, training loop (FashionMNIST, 86% test acc) | [01-pytorch-basics](01-pytorch-basics/) | ✅ |
 | 0 | CNN: ResNet BasicBlock in PyTorch | [CNN/ResNet](CNN/ResNet/) | ✅ block only |
 | 1 | Tokenization: NLTK tokenizers, stemming, lemmatization → own BPE | [02-nlp-tokenization](02-nlp-tokenization/) | 🔄 |
-| 2 | Attention (watch + notes) | — | ⏳ |
-| 3 | Mini-GPT from scratch | — | ⏳ |
-| 4+ | LLM apps → flagship RAG + agent | — | ⏳ |
+| 2 | Attention (watch + notes) | [03-attention](03-attention/) | ⏳ |
+| 3 | Mini-GPT from scratch | [04-mini-gpt](04-mini-gpt/) | ⏳ |
+| 4 | LLM apps: APIs, structured output, tool calling, embeddings | [05-llm-apps](05-llm-apps/) | ⏳ |
+| 5–7 | Flagship: RAG v0 → agent + MCP → evals + production | [06-flagship](06-flagship/) | ⏳ |
+| 8 | Open model vs API: LoRA fine-tune | [07-lora-finetune](07-lora-finetune/) | ⏳ |
+| 8 | Serving basics: quantization + vLLM | [08-serving-basics](08-serving-basics/) | ⏳ |
 
-Earlier ML work: [Cluster-Algorithm](Cluster-Algorithm/) (K-Means, DBSCAN) · [Projects](Projects/)
+Earlier ML work: [Cluster-Algorithm](Cluster-Algorithm/) (K-Means, DBSCAN) · [Projects](Projects/) · [CIFAR10-Implementation](https://github.com/MUHAMMEDQULIYEV/CIFAR10-Implementation) (separate repo)
 
 ## Setup
 ```bash
