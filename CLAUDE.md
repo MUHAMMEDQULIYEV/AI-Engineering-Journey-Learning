@@ -18,10 +18,10 @@ Questions in these commands are asked **one at a time**: ask, wait for the answe
 - **"End session"**:
   1. Read the notebook on disk. Name skipped exercises and open bugs plainly.
   2. Add one row to the session log: date, plan row, output (commit), skipped/open, 🧠 recalled (✅/partial/❌) → next due. Next due follows the gap ladder in `roadmap/learning-methods.md`: 1 → 3 → 7 → 21 → 60 days; ✅ moves up a step, partial stays, ❌ resets to 1 day.
-  3. **Mahammad writes the NEXT line himself.** Claude only critiques it (too vague? too big? not the very next step?) and does not write it for him. He saves it in `~/Claude_KNow_About_me/NEXT.md`.
+   3. **Claude writes the NEXT line** (one concrete, small, very next step) and saves it in `~/Claude_KNow_About_me/NEXT.md`. Mahammad reads it and corrects it if it's wrong.
   4. Optional: add the next study day's task to Notion (Due = that day). Skip it on rest days and if Notion isn't connected.
   5. Remind to commit + push.
-- **Minimum day (15 min) End session**: 2 lines only: Mahammad's NEXT line + "commit + push". No log row needed.
+- **Minimum day (15 min) End session**: 2 lines only: the NEXT line (Claude writes + saves it) + "commit + push". No log row needed.
 - **REVIEW day is AI-off** (once a week): Mahammad does the recall + a blank-file rebuild without Claude. Claude only checks the result afterwards: what was missing, and which topics go back to 1 day on the ladder.
 - **"Weekly check-in"**: 3 lines only (proof link, energy 1–10, one change for next week). Fill `roadmap/templates/weekly-checkin.md`, save it in `~/Claude_KNow_About_me/checkins/`, and link it from that day's session-log row.
 - **Feeling bad / unmotivated**: use `roadmap/bad-days.md`. Start with Rule 1 (open file, 1 cell, 5-minute timer), then give the smallest version of today's row.
