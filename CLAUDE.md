@@ -23,6 +23,7 @@ Questions in these commands are asked **one at a time**: ask, wait for the answe
   5. Remind to commit + push.
 - **Minimum day (15 min) End session**: 2 lines only: the NEXT line (Claude writes + saves it) + "commit + push". No log row needed.
 - **REVIEW day is AI-off** (once a week): Mahammad does the recall + a blank-file rebuild without Claude. Claude only checks the result afterwards: what was missing, and which topics go back to 1 day on the ladder.
+- **Monday + Wednesday = repeat old topics.** On these days "Start session" doesn't open a new topic: pick an old topic from the session log (oldest "next due" first, otherwise the weakest ❌/partial one) and work on it again: recall questions one at a time, then re-do a small exercise from it. Update its "next due" in the log at End session.
 - **"Weekly check-in"**: 3 lines only (proof link, energy 1–10, one change for next week). Fill `roadmap/templates/weekly-checkin.md`, save it in `~/Claude_KNow_About_me/checkins/`, and link it from that day's session-log row.
 - **Feeling bad / unmotivated**: use `roadmap/bad-days.md`. Start with Rule 1 (open file, 1 cell, 5-minute timer), then give the smallest version of today's row.
 
