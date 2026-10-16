@@ -11,7 +11,7 @@ Sources: Dunlosky et al. (2013), a review of 10 study techniques, and the book *
 | Situation | Best method | How (1 line) | Avoid |
 |---|---|---|---|
 | New math-heavy concept (attention, softmax) | **Dual coding + predict** | Draw the shapes by hand first: `x (B=1,T=4,C=8) → q,k (1,4,8) → q@kᵀ (1,4,4)`, predict each shape, then run it. | Reading the formula 5 times |
-| Coding-along video | **Worked example → faded → blank file** | Watch ≤30 min, then redo it with half the lines deleted, then from an empty file the next day (e.g. BPE `merge()`). | Typing along at 2× and calling it done |
+| Coding-along video | **Worked example → faded → blank file** | Watch ≤30 min, then redo it with half the lines deleted, then from an empty file the next day (e.g. BPE `merge()`). | Typing along at 2× and calling it done (→ see `videos/RULES.md`) |
 | New library or API (FastAPI, LangChain) | **Spike first, then learn** | 30-minute ugly spike: one `/ask` endpoint that returns JSON. *Then* read the docs page for the parts you used. | Watching a full course before writing a line |
 | Debugging | **Predict + error log** | Before each fix, write "I think it fails because …"; after, log the bug + the real cause in 1 line in `notes.md`. | Changing random lines until it works |
 | Reading a paper | **Docs/source over video + Feynman** | Read abstract, figures and one key equation; then explain it in 5 sentences with the paper closed. | Watching 3 summary videos instead |

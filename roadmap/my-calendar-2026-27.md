@@ -12,23 +12,23 @@ Use it as an example of how to put the plan into your own calendar. Dates are ta
 - ☐ Sat Oct 10 · SHIP: BPE merge step ×10 · push
 - ☐ Sun Oct 11 · REVIEW: own BPE vs `tiktoken` (Azerbaijani + English) · 🧠 why BPE? · write 2–3 candidate flagship data sources (5 min, no decision) · check-in
 
-## Mon Oct 12 – Sun Oct 18 · Block 2 Attention 🟡 (exam week, ≤40 min, no code)
+## Mon Oct 12 – Sun Oct 18 · Block 2 Attention 🟡 (exam week, ~1 h: watch + small code)
 - Mon Oct 12 · rest
 - ☐ Tue Oct 13 · LEARN: 3B1B ch.5 + 1 predict question
 - Wed Oct 14 · rest
-- ☐ Thu Oct 15 · BUILD: 3B1B ch.6 + 1 predict question
+- ☐ Thu Oct 15 · BUILD: 3B1B ch.6 + 1 predict question · NumPy `softmax` (sums to 1?) + 4×4 dot-product score matrix
 - Fri Oct 16 · rest
-- ☐ Sat Oct 17 · SHIP: Karpathy GPT 0:00–0:40 (bigram), watch only
-- ☐ Sun Oct 18 · REVIEW: short check-in
+- ☐ Sat Oct 17 · SHIP: Karpathy GPT 0:00–0:40 (bigram) · pure-Python bigram counts on an Azerbaijani string · commit
+- ☐ Sun Oct 18 · REVIEW (AI-off): blank-file BPE merge step ≤20 lines (Block 1 🔒) · short check-in
 
-## Mon Oct 19 – Sun Oct 25 · Block 2 Attention 🟡 (exam week, ≤40 min, no code)
+## Mon Oct 19 – Sun Oct 25 · Block 2 Attention 🟡 (exam week, ~1 h: watch + small code)
 - Mon Oct 19 · rest
-- ☐ Tue Oct 20 · LEARN: Karpathy 0:40–1:20 (self-attention) + 1 predict
+- ☐ Tue Oct 20 · LEARN: Karpathy 0:40–1:20 (self-attention) + 1 predict · NumPy averaging trick (lower-triangular mask, T=4)
 - Wed Oct 21 · rest
-- ☐ Thu Oct 22 · BUILD: Karpathy ~1:20 → end (multi-head, FFN, residual, LayerNorm) + 1 predict
+- ☐ Thu Oct 22 · BUILD: Karpathy ~1:20 → end (multi-head, FFN, residual, LayerNorm) + 1 predict · NumPy one head (B=1, T=4, C=8) + causal mask, print shapes
 - Fri Oct 23 · rest
-- ☐ Sat Oct 24 · SHIP: one page "attention in my words"
-- ☐ Sun Oct 25 · REVIEW: check-in · download ~1 MB Azerbaijani text for Block 3 (no code)
+- ☐ Sat Oct 24 · SHIP: one page "attention in my words" · commit `attention_numpy.ipynb`
+- ☐ Sun Oct 25 · REVIEW: check-in · download ~1 MB Azerbaijani text for Block 3 · ≤5 lines: length + unique chars
 
 ## Mon Oct 26 – Sun Nov 1 · Block 3 Mini-GPT (week 1)
 - Mon Oct 26 · optional / rest

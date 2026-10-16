@@ -37,21 +37,21 @@ Goal: know how text becomes numbers, and build your own tokenizer.
 Optional: stemming, lemmatization, stopwords (classic NLP). Good to know, not required.
 **Done:** char tokenizer round-trip test passes · BPE runs 10 merges · token-count table (your BPE vs `tiktoken`, 2 languages) in the repo · 🔒 explain BPE in 5 sentences, then write one merge step (count pairs + merge) in ≤20 lines, no notes.
 
-## Block 2 · Attention, watch only 🟡 (2 weeks, can be an exam period)
-≤40 min per day, **no code** (the code-along happens in Block 3). Each video ends with **one predict question** that you write and answer yourself.
+## Block 2 · Attention, watch + small code 🟡 (2 weeks, can be an exam period)
+About 1 h per study day: **≤40 min video + ~30 min small code** in plain Python/NumPy (no PyTorch; the full PyTorch build happens in Block 3). Each video ends with **one predict question** that you write and answer yourself. Code goes in `03-attention/attention_numpy.ipynb`.
 
-| Day | Task |
-|---|---|
-| ☐ LEARN | 3Blue1Brown, *Transformers* chapter 5 |
-| ☐ BUILD | 3Blue1Brown, *Attention* chapter 6 |
-| ☐ SHIP | Karpathy *"Let's build GPT"* 0:00–0:40 (data, bigram), watch only |
-| ☐ REVIEW | Short weekly check-in |
-| ☐ LEARN | Karpathy 0:40–1:20 (self-attention) |
-| ☐ BUILD | Karpathy ~1:20 → end (multi-head, feed-forward, residual, LayerNorm, scaling up) |
-| ☐ SHIP | One page: "attention in my own words" |
-| ☐ REVIEW | Check-in · find and download ~1 MB of **Azerbaijani text** for Block 3 (no code) |
+| Day | Watch | Code (~30 min) |
+|---|---|---|
+| ☐ LEARN | 3Blue1Brown, *Transformers* chapter 5 | — |
+| ☐ BUILD | 3Blue1Brown, *Attention* chapter 6 | NumPy `softmax(x)`, check it sums to 1 · 4 random vectors → dot-product score matrix (predict the shape first) |
+| ☐ SHIP | Karpathy *"Let's build GPT"* 0:00–0:40 (data, bigram) | pure-Python bigram counts (a dict) on a short Azerbaijani string; predict the top pair first · commit |
+| ☐ REVIEW | — | **AI-off:** blank-file BPE merge step in ≤20 lines (the open Block 1 🔒 check) · short check-in |
+| ☐ LEARN | Karpathy 0:40–1:20 (self-attention) | NumPy "averaging trick": lower-triangular mask, each row = average of itself and the rows before it, T=4 |
+| ☐ BUILD | Karpathy ~1:20 → end (multi-head, feed-forward, residual, LayerNorm, scaling up) | NumPy one head: B=1, T=4, C=8, random Wq/Wk/Wv, causal mask, `softmax(QKᵀ/√d)·V`, print every shape |
+| ☐ SHIP | — | One page: "attention in my own words" · commit the notebook |
+| ☐ REVIEW | — | Check-in · download ~1 MB of **Azerbaijani text** for Block 3 · ≤5 lines of Python: text length + number of unique chars |
 
-**Done:** 8 predict questions answered in notes · the one-page attention note · Azerbaijani text file saved · 🔒 explain `softmax(QKᵀ/√d)·V` in 5 sentences and write the shapes of Q, K, V and the attention matrix for B=1, T=4, C=8, no notes (no code this block).
+**Done:** 8 predict questions answered in notes · `03-attention/attention_numpy.ipynb` runs (softmax, masked averaging, one head with the right shapes) · BPE blank-file rebuild done · the one-page attention note · Azerbaijani text file saved · 🔒 explain `softmax(QKᵀ/√d)·V` in 5 sentences and write the shapes of Q, K, V and the attention matrix for B=1, T=4, C=8, no notes.
 
 ## Block 3 · Mini-GPT from scratch (3 weeks, a cap) → portfolio repo #1
 3 weeks is the limit, not the target. If it slips, the overflow goes into the Block 4 catch-up days.
